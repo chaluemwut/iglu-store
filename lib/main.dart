@@ -9,10 +9,17 @@ void main() {
   runApp(app);
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _App();
+  }
+}
+
+class _App extends State {
   @override
   Widget build(BuildContext context) {
-    final materialApp = MaterialApp(
+    MaterialApp materialApp = MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
       theme: ThemeData(primaryColor: Constant.primaryColor),

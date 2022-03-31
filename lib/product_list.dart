@@ -39,15 +39,25 @@ class _ProductList extends State<ProductList> {
           Product product = _products[index];
           Card c = Card(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FadeInImage.assetNetwork(
-                    placeholder: "assets/loading.gif",
-                    image: product.imgURL[0]),
-                Text("${product.name}")
+                SizedBox(
+                  height: 150,
+                  child: FadeInImage.assetNetwork(
+                      placeholder: "assets/loading.gif",
+                      image: product.imgURL[0]),
+                ),
+                Padding(
+                    padding: EdgeInsets.only(left: 5),
+                    child: Text("${product.name}")),
+                Padding(
+                    padding: EdgeInsets.only(left: 5),
+                    child: Text("${product.price}"))
               ],
             ),
           );
           return InkWell(
+            key: Key("${product.id}"),
             child: c,
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (BuildContext context) =>

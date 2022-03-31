@@ -3,6 +3,8 @@ import 'package:istore/data.dart';
 import 'package:istore/mock_api.dart';
 import 'package:istore/product_list.dart';
 
+import 'cart.dart';
+
 class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -19,11 +21,22 @@ class _Home extends State {
         body: SafeArea(
       child: ListView(children: [
         Padding(
-            padding: EdgeInsets.only(top: 15, bottom: 5),
-            child: Text('Category')),
+            padding: EdgeInsets.only(top: 15, bottom: 5, left: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Category'),
+                IconButton(
+                    onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => Cart())),
+                    icon: Icon(Icons.shopping_cart))
+              ],
+            )),
         ...List.generate(_apiMocking.length, (index) {
           Category category = _apiMocking[index];
           Card c = Card(
+            key: Key("${category.id}"),
             child: Column(
               children: [
                 SizedBox(
